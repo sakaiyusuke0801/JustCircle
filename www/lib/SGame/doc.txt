@@ -1,0 +1,108 @@
+■ドキュメント的な
+20200403 sakai.y
+
+■エンジン本体はこちら↓↓↓
+    SGame
+    基本すべては上のオブジェクトから使います
+
+■基本概念
+
+    シーンで１画面
+    シーンの中にデモを置いていって画面を構成
+
+■シーンを作りたい
+
+    ・関数
+    SGame.createScene
+
+    ・引数
+    _name
+    シーンの名前
+
+    ・戻り値
+    シーンオブジェクト
+
+    ・使用例
+    let 変数名 = SGame.createScene("name");
+
+■シーンにデモを追加したい
+
+    ・シーンのもつ関数
+    シーンオブジェクト.addDemo
+
+    ・引数
+    _demo
+    デモオブジェクト
+
+    ・戻り値
+    void
+
+    ・使用例
+    デモを追加した順番がプライオリティになります
+
+    // シーンにデモを追加
+    scene.addDemo(demo);
+
+■シーンの更新処理を書きたい
+
+    ・シーンのもつ関数
+    シーンオブジェクト.setUpdate
+
+    ・引数
+    function
+    関数
+
+    ・戻り値
+    void
+
+    ・使用例
+    処理が書かれた関数を渡してあげて
+
+    scene.setUpdate(
+        function (scene) {
+        }
+    );
+
+    これか、関数を別で書いといて、それ渡してもよきやけど
+    
+    let f = function(scene){
+
+    };
+    scene.setUpdate(f);
+
+    ・引数の関数が受け取る引数
+    (scene, gTouchOn, gTouchOnOff, gTouchX, gTouchY, gTouchMoveX, gTouchMoveY, gTouchOffX, gTouchOff)
+    このシーン自体、タッチ系のいろいろ・・・
+
+■四角形のデモを作りたい
+
+    ・関数
+    SGame.createRectDemo
+
+    ・引数（省略できるものは(*)）
+    _name, _color, _fill, _line, _width(*), _height(*), _pos_x(*), _pos_y(*), _scale_x(*), _scale_y(*), _alpha(*)
+    シーンの名前、色、塗りつぶすか？、線の幅(px)、幅(px)、高さ(px)、位置ｘ、位置ｙ、拡縮ｘ、拡縮ｙ、透明度
+
+    ・戻り値
+    デモオブジェクト
+
+    ・使用例
+    let 変数名 = SGame.createRectDemo("name", "#00FF00", false, 5, 100, 200, 10, 20, 1, 1, 1);
+
+■円のデモを作りたい
+
+    ・関数
+    SGame.createCircleDemo
+
+    ・引数（省略できるものは(*)）
+    _name, _color, _radius, _fill, _line, _pos_x(*), _pos_y(*), _scale_x(*), _scale_y(*), _alpha(*)
+    シーンの名前、色、直径、塗りつぶすか？、線の幅(px)、位置ｘ、位置ｙ、拡縮ｘ、拡縮ｙ、透明度
+
+    ・戻り値
+    デモオブジェクト
+
+    ・使用例
+    let 変数名 = SGame.createCircleDemo("name", "#00FF00", 50, false, 5, 10, 20, 1, 1, 1);
+
+    円のデモのposは中心になるから気を付けて
+
